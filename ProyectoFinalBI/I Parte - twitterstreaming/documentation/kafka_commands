@@ -1,0 +1,19 @@
+cd C:\kafka_2.11-2.3.0
+
+--Inicializar Zookeeper
+bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
+--Inicializar Kafka
+bin\windows\kafka-server-start.bat config/server.properties
+
+--Crear un nuevo Topic
+bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic twitter_stream
+
+--Ver lista de Topics
+bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
+
+--Ver Mensajes de un un Topic
+bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic twitter_stream --from-beginning
+
+--Eliminar un Topic
+bin\windows\kafka-topics.bat --delete --bootstrap-server localhost:9092 --topic twitter_stream
